@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content=
+        "width=device-width, initial-scale=1.0">
+    <title>
+        Deployment Using Flask
+    </title>
+ 
+    <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 12px;
+  line-height: 30px;
+  color: #777;
+  background: #4CAF50;
+}
+
+h1 {
+    color: white;
+    text-align: center
+        }
+
+.container {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+#contact input[type="number"],
+#contact input[type="text"],
+#contact button[type="submit"] {
+  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+}
+
+#contact {
+  background: #F9F9F9;
+  padding: 25px;
+  margin: 80px 0;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#contact h3 {
+  display: block;
+  font-size: 30px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+fieldset {
+  border: medium none !important;
+  margin: 0 0 10px;
+  min-width: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+#contact input[type="number"],
+#contact input[type="text"],
+#contact textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+}
+
+#contact input[type="text"]:hover,
+#contact input[type="number"]:hover,
+#contact textarea:hover {
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid #aaa;
+}
+
+#contact textarea {
+  height: 100px;
+  max-width: 100%;
+  resize: none;
+}
+
+#contact button[type="submit"] {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  background: #4CAF50;
+  color: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+#contact button[type="submit"]:hover {
+  background: #43A047;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#contact button[type="submit"]:active {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.copyright {
+  text-align: center;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+  outline: 0;
+  border: 1px solid #aaa;
+}
+
+::-webkit-input-placeholder {
+  color: #888;
+}
+
+:-moz-placeholder {
+  color: #888;
+}
+
+::-moz-placeholder {
+  color: #888;
+}
+
+:-ms-input-placeholder {
+  color: #888;
+}
+        
+    </style>
+</head>
+<body>
+<div class="container">  
+  <form id="contact" action="{{ url_for('predict') }}" method="post">
+    <h3>Heart Attack Predictor</h3>
+      <input placeholder="Age" name="age" type="text" required autofocus>
+      <input placeholder="Sex: 0-female 1-male" name="sex" type="text" required>
+      <input placeholder="chest pain type: 0-3" name='cp' type="text" required>
+      <input placeholder="resting blood pressure: 94-200" name='trestbps' type="text" required>
+      <input placeholder="serum cholestoral in mg/dl: 120-560" name='chol' type="text" required>
+      <input placeholder="fasting blood sugar > 120 mg/dl: 0-1" name='fbs' type="text" required>
+      <input placeholder="resting electrocardiographic results: 0-2)" name='restecg' type="text" required>
+      <input placeholder="maximum heart rate achieved:70-202" name='thalach' type="text" required>
+      <input placeholder="exercise induced angina: 0-1" name='exang' type="text" required>
+      <input placeholder="ST depression induced by exercise relative to rest: 0-6.2" name='oldpeak' type="text" required>
+      <input placeholder="the slope of the peak exercise ST segment: 0-2" name='slope' type="text" required>
+      <input placeholder="number of major vessels: 0-3" name='ca' type="text" required>
+      <input placeholder="thal: 1-normal 2-fixed defect 3-reversable defect" name='thal' type="text" required>
+      <button name="submit" type="submit" id="contact-submit">Predict</button>
+  </form>
+</div>
+    <h1> 1: More likely to get a heart attack</h1>
+    <h1> 0: Less likely to get a heart attack</h1>
+    <h1>   {{ prediction_text }}</h1>
+    </body>
+  
+</html>
