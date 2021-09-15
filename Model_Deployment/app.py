@@ -19,12 +19,8 @@ def predict():
     int_feature = [int(float(x)) for x in temp]
     final_features = [np.array(int_feature)]
     prediction = model.predict(final_features)
-    print(int_features)
-    print(final_features)
-    print(prediction)
     string="Status: {}".format(prediction)
     return render_template('index.html', prediction_text=string)
-
 
 if __name__ == "__main__":
     app.run(debug=True)
